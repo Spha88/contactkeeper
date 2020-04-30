@@ -6,6 +6,10 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Init middleware
+// There's no need to install body parser now
+app.use(express.json({ extended: false }));
+
 app.get('/', (req, res) =>
    res.json({ msg: 'Welcome to the contact keeper API...' })
 );
