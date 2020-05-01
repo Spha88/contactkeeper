@@ -1,3 +1,4 @@
 {
-   "mongoURI": "mongodb+srv://spha:Sm220588.@cluster0-zoqvp.mongodb.net/contactkeeper?retryWrites=true&w=majority"
+   "mongoURI": "mongodb+srv://spha:Sm220588.@cluster0-zoqvp.mongodb.net/contactkeeper?retryWrites=true&w=majority",
+   "jwtSecret": "secret"
 }
