@@ -7,7 +7,7 @@ import * as actionTypes from '../types';
 const ContactState = props => {
    // State
    const initialState = {
-      contacts: [],
+      contacts: null,
       current: null,
       filtered: null,
       error: null,
@@ -15,12 +15,17 @@ const ContactState = props => {
 
    const [state, dispatch] = useReducer(contactReducer, initialState);
 
-   //Load Contacts
-   const loadContacts = async () => {
+   //Get Contacts
+   const getContacts = async () => {
       try {
          const res = await axios.get('/api/contacts');
+
+         dispatch({ type: actionTypes.GET_CONTACTS, payload: res.data });
       } catch (err) {
-         console.log(err);
+         dispatch({
+            type: actionTypes.CONTACT_ERROR,
+            payload: err.response.msg,
+         });
       }
    };
 
@@ -47,6 +52,11 @@ const ContactState = props => {
    // Delete contact
    const deleteContact = id => {
       dispatch({ type: actionTypes.DELETE_CONTACT, payload: id });
+   };
+
+   // Clear contacts
+   const clearContacts = () => {
+      dispatch({ type: actionTypes.CLEAR_CONTACTS });
    };
 
    // Set current contact
@@ -81,7 +91,7 @@ const ContactState = props => {
             current: state.current,
             filtered: state.filtered,
             error: state.error,
-            loadContacts,
+            getContacts,
             addContact,
             deleteContact,
             setCurrent,
@@ -89,6 +99,7 @@ const ContactState = props => {
             updateContact,
             filterContacts,
             clearFilter,
+            clearContacts,
          }}
       >
          {props.children}
