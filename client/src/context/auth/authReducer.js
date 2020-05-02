@@ -31,7 +31,6 @@ export default (state, action) => {
             user: null,
             error: action.payload,
          };
-      case actionTypes.LOGOUT:
       case actionTypes.CLEAR_ERRORS:
          return {
             ...state,
