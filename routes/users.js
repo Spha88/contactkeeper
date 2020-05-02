@@ -24,7 +24,7 @@ router.post(
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-         return res.status(400).json({ erros: errors.array() }); // Return if we have validation errors
+         return res.status(400).json({ errors: errors.array() }); // Return if we have validation errors
       }
 
       const { name, email, password } = req.body; // get params from the form body of the request
